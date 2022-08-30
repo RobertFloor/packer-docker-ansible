@@ -1,0 +1,10 @@
+---
+- hosts: all
+  tasks:
+    - name: message
+      debug: msg="Container {{ inventory_hostname }}"
+      become: yes
+    - name: install
+      package: name=git state=latest
+      become: yes
+      become_user: amq
