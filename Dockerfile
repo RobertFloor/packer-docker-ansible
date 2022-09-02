@@ -18,4 +18,5 @@ RUN /opt/amq/amq-broker-7.10.0/bin/artemis create /opt/amq/amq-broker --user amq
                         --clustered  --cluster-user amq --cluster-password amq --shared-store --host localhost
 RUN sed -i 's/localhost/0.0.0.0/g' /opt/amq/amq-broker/etc/bootstrap.xml
 RUN sed -i 's/localhost*/*/g'      /opt/amq/amq-broker/etc/jolokia-access.xml
-CMD /opt/amq/amq-broker/bin/artemis run
+#CMD /opt/amq/amq-broker/bin/artemis run
+ENTRYPOINT ["/bin/bash", "/opt/amq/amq-broker/bin/artemis", "run"]

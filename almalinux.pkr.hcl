@@ -5,6 +5,9 @@ source "docker" "ubuntu" {
   commit = true
   image  = "amq-base-image"
   pull   = false
+  changes = [
+    "ENTRYPOINT [\"/bin/bash\", \"/opt/amq/amq-broker/bin/artemis\", \"run\"]"
+  ]
 
 }
 build {
@@ -15,7 +18,7 @@ build {
   provisioner "ansible" {
     playbook_file = "playbook.yaml"
     user = "amq"
-    extra_arguments = [ "-vvv" ]
+    extra_arguments = [ "-v" ]
 
   }
 
