@@ -1,17 +1,18 @@
 variable "tag" {
   type = string
 }
-source "docker" "ubuntu" {
+source "docker" "almalinux" {
   commit = true
   image  = "amq-base-image"
   pull   = false
   changes = [
+    "USER amq",
     "ENTRYPOINT [\"/bin/bash\", \"/opt/amq/amq-broker/bin/artemis\", \"run\"]"
   ]
 
 }
 build {
-  sources = ["source.docker.ubuntu"]
+  sources = ["source.docker.almalinux"]
   # provisioner "shell" {
   #   script = "install_python.sh"
   # }
